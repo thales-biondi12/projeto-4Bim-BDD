@@ -56,7 +56,7 @@ O projeto realiza as seguintes operações:
 Instale as dependências necessárias:
 
 ```bash
-pip install pymongo matplotlib
+python -m pip install -r requirements.txt
 ```
 
 Execute o projeto a partir da raiz do repositório:

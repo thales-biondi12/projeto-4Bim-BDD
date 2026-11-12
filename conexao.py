@@ -1,12 +1,13 @@
+"""Conexao compartilhada com o MongoDB usando variavel de ambiente."""
+
+import os
+from pathlib import Path
+
+from dotenv import load_dotenv
 from pymongo import MongoClient
 
-MONGO_URI = "mongodb+srv://PedroBD:Pedbatata12@clusterprojeto3.b6i8yfw.mongodb.net/?appName=ClusterProjeto3"
-
-cliente = MongoClient(MONGO_URI)
-
-# Testa a comunicação com o MongoDB! (coloquei como recomendação)
-cliente.admin.command("ping")
-
-banco = cliente["laboratorio_python"]
-
-print("Conectado ao MongoDB!")
+load_dotenv(Path(__file__).with_name('.env'))
+MONGO_URI = os.getenv('MONGO_URI', 'mongodb://localhost:27017/')
+cliente = MongoClient(MONGO_URI, serverSelectionTimeoutMS=5000)
+cliente.admin.command('ping')
+banco = cliente['laboratorio_python']
